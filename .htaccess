@@ -1,0 +1,82 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^home$ /home/ [R]
+RewriteRule ^home/$ index.php?page=home
+
+RewriteRule ^logout$ /logout/ [R]
+RewriteRule ^logout/$ index.php?page=logout
+
+RewriteRule ^activation$ /activation/ [R]
+RewriteRule ^activation/$ activation.php
+
+RewriteRule ^activation/([^/]+)$ /activation/$1/ [R]
+RewriteRule ^activation/([^/]+)/$ activation.php?id=$1
+
+RewriteRule ^activation/([^/]+)/([^/]+)$ /activation/$1/$2/ [R]
+RewriteRule ^activation/([^/]+)/([^/]+)/$ activation.php?id=$1&code=$2
+
+RewriteRule ^register$ /register/ [R]
+RewriteRule ^register/$ index.php?page=register
+
+RewriteRule ^profile$ /profile/ [R]
+RewriteRule ^profile/$ index.php?page=profile
+
+RewriteRule ^profile/([^/]+)$ /profile/$1/ [R]
+RewriteRule ^profile/([^/]+)/$ index.php?page=profile&viewprofile=$1
+
+RewriteRule ^cp$ /cp/ [R]
+RewriteRule ^cp/$ index.php?page=control
+
+RewriteRule ^board$ /board/ [R]
+RewriteRule ^board/$ index.php?page=board
+
+RewriteRule ^board/([^/]+)$ /board/$1/ [R]
+RewriteRule ^board/([^/]+)/$ index.php?page=board&boardid=$1
+
+RewriteRule ^board/([^/]+)/([^/]+)$ /board/$1/$2/ [R]
+RewriteRule ^board/([^/]+)/([^/]+)/$ index.php?page=board&boardid=$1&subboardid=$2
+
+RewriteRule ^board/([^/]+)/([^/]+)/([^/]+)$ /board/$1/$2/$3/ [R]
+RewriteRule ^board/([^/]+)/([^/]+)/([^/]+)/$ index.php?page=board&boardid=$1&subboardid=$2&pagenum=$3
+
+RewriteRule ^topic$ /topic/ [R]
+RewriteRule ^topic/$ index.php?page=topic
+
+RewriteRule ^topic/([^/]+)$ /topic/$1/ [R]
+RewriteRule ^topic/([^/]+)/$ index.php?page=topic&topicid=$1
+
+RewriteRule ^topic/([^/]+)/([^/]+)$ /topic/$1/$2/ [R]
+RewriteRule ^topic/([^/]+)/([^/]+)/$ index.php?page=topic&topicid=$1&pagenum=$2
+
+RewriteRule ^addtopic$ /addtopic/ [R]
+RewriteRule ^addtopic/$ index.php?page=addtopic
+
+RewriteRule ^addtopic/([^/]+)/([^/]+)$ /addtopic/$1/$2/ [R]
+RewriteRule ^addtopic/([^/]+)/([^/]+)/$ index.php?page=addtopic&boardid=$1&subboardid=$2
+
+RewriteRule ^addsubboard$ /addsubboard/ [R]
+RewriteRule ^addsubboard/$ index.php?page=addsubboard
+
+RewriteRule ^addsubboard/([^/]+)$ /addsubboard/$1/ [R]
+RewriteRule ^addsubboard/([^/]+)/$ index.php?page=addsubboard&boardid=$1
+
+RewriteRule ^addboard$ /addboard/ [R]
+RewriteRule ^addboard/$ index.php?page=addboard
+
+RewriteRule ^replytopic$ /replytopic/ [R]
+RewriteRule ^replytopic/$ index.php?page=replytopic
+
+RewriteRule ^replytopic/([^/]+)$ /replytopic/$1/ [R]
+RewriteRule ^replytopic/([^/]+)/$ index.php?page=replytopic&topicid=$1
+
+RewriteRule ^blogs$ /blogs/ [R]
+RewriteRule ^blogs/$ index.php?page=blogs
+
+RewriteRule ^blogs/([^/]+)$ /blogs/$1/ [R]
+RewriteRule ^blogs/([^/]+)/$ index.php?page=blogs&blogid=$1
