@@ -1,0 +1,92 @@
+
+
+.boardbox{
+    position: relative;
+}
+
+.boardbox .titlebox, .subboardbox .titlebox{
+
+    height:40px !important;
+    line-height: 40px !important;
+}
+
+.boardbox .subboard_row, .subboardbox .topic_row{
+    height:60px;
+    border-bottom:1px solid #000;
+    vertical-align:middle;
+    position:relative;
+}
+
+.boardbox .subboard_row:nth-child(2), .subboardbox .topic_row:nth-child(2){
+    background-color:rgba(0,0,0,0.2);
+}
+
+.boardbox .subboard_row .rowicon, .subboardbox .topic_row .rowicon{
+    position: absolute;
+    left:25px;
+    top:17px;
+}
+
+.boardbox .subboard_row .rowname{
+    position: absolute;
+    left:80px;
+    top:15px;
+}
+.boardbox .subboard_row .rowdesc{
+    position: absolute;
+    left:80px;
+    top:31px;
+    color:#9f9f9f;
+}
+
+.boardbox .subboard_row .rowstats, .subboardbox .topic_row .rowstats{
+    position: absolute;
+    right:210px;
+    top:10px;
+    color:#9f9f9f;
+    padding-top:5px;
+    width:135px;
+    border-left: 1px rgba(0,0,0,0.35) solid;
+    border-right: 1px rgba(0,0,0,0.35) solid;
+    text-align: center;
+    height:34px;
+}
+
+.boardbox .subboard_row .rowlastedit, .subboardbox .topic_row .rowlastedit {
+
+    position: absolute;
+    right:10px;
+    top:10px;
+    color:#9f9f9f;
+    padding-top:5px;
+    width:145px;
+    height:34px;
+    padding-left:40px;
+}
+
+.boardbox .subboard_row .rowlastedit a, .subboardbox .topic_row .rowlastedit a {
+    text-decoration: none;
+}
+
+.boardbox .subboard_row .rowlastedit a:hover, .subboardbox .topic_row .rowlastedit a:hover {
+    text-decoration: underline;
+}
+
+.boardbox .subboard_row .rowlastedit img, .subboardbox .topic_row .rowlastedit img{
+    position: absolute;
+    left: -5px;
+    top:0px;
+    border:1px solid #000000;
+    width:35px;
+    height:35px;
+}
+
+.boardbox .subboard_row .rowname a, .subboardbox .topic_row .rowname a{
+    text-decoration: none;
+}
+
+.subboardbox .topic_row .rowname{
+    position: absolute;
+    left:80px;
+    top:13px;
+}

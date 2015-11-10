@@ -1,0 +1,42 @@
+h1,h2,h3,h4,h5{
+*font-size:90%;
+}
+.topictable th{
+background:#0D0D26;
+}
+.whitebut{
+background:transparent url('images/iefffx0.2.png') repeat 0 0;
+}
+#bluefolder{
+background:transparent url('images/icons/blue-folder.png') no-repeat 5px 4px;
+*border:1px solid #000;
+}
+#bluedocument{
+background:transparent url('images/icons/blue-document.png') no-repeat 5px 4px;
+*border:1px solid #000;
+}
+
+#main{
+border:1px solid #222;
+background:transparent url('images/mainiebg.jpg') repeat-x -10px 0 fixed;
+}
+#main .topbar{
+background:transparent url('images/topbar_bg.png') repeat-x 0 bottom;
+}
+
+.infobox{
+background:#333;
+}
+#memlog .profile,.control .side1 .profile,.control .sidebar2 .shadetabs{
+background:white url('images/ieModProfile.png') repeat-x 0 0px;
+}
+#memlog ul li{
+background:#434343 url('images/ieModProfile.png') repeat-x 0 -121px;
+}
+.control .side1 ul li{
+background:white url('images/ieModProfile.png') repeat-x 0 -10px;
+}
+.control .sidebar2{
+width:73.8% !important;
+float:right;
+}
