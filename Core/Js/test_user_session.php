@@ -40,8 +40,10 @@ if($sql->num_rows > 0){
             if($sql->num_rows==1){
                 $row=$sql->fetch_assoc();
                 die ("1");
-            }elseif($_SESSION['UserSessionid'] != ''){
+            }
+            if($_SESSION['UserSessionid'] != "" || $_SESSION['loggedUser'] != ""){
                 $_SESSION['forcelogout']['reason']="Due To Inactivity";
+                unset($_SESSION['loggedUser']);
                 unset($_SESSION['UserSessionid']);
                 die("0");
             }

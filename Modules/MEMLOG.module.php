@@ -30,11 +30,11 @@ if (!defined('XFS'))
 						<?php unset($_SESSION['error']['login']);}?>
 					<tr>
 						<td><b>User Name</b></td>
-						<td><input type="text" class="blacktextbox"name="userLogMod"/></td>
+						<td><input placeholder="Username" type="text" class="blacktextbox"name="userLogMod"/></td>
 					</tr>
 					<tr>
 						<td><b>Password</b></td>
-						<td><input type="password" class="blacktextbox"name="passLogMod"/></td>
+						<td><input placeholder="Password" type="password" class="blacktextbox"name="passLogMod"/></td>
 					</tr>
 					<tr>
 						<td colspan="2">
