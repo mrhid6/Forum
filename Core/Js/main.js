@@ -287,6 +287,7 @@ function toggleFullMessage(data){
 			$("#alertbox .content b").html(data);
 			$("#alertbox").show();
 		});
+
 	}
 }
 
@@ -295,6 +296,9 @@ function toggleFullMessage(data){
 $( document ).ready(function() {
 
 	resizeCoverPage();
+	$("#alertbox .content .okbutton").on('click',function(){
+		toggleFullMessage("");
+	});
 
 	//$("#alertbox .content b").html(null);
 
@@ -309,8 +313,8 @@ $( document ).ready(function() {
 							toggleFullMessage("");
 							window.location="/home";
 						});
+						console.log("Data: " + data + "\nStatus: " + status);
 					}
-					console.log("Data: " + data + "\nStatus: " + status);
 
 				});
 	}, 10000);

@@ -49,7 +49,7 @@ if($sql->num_rows > 0){
             }
         }
     }
-    echo "2";
+    echo "2 [".$_SESSION['loggedUser'].":".$_SESSION['UserSessionid']."]";
 }else{
     echo "0";
 }

@@ -184,7 +184,7 @@ function MemOnlyPages($page){
 		exit();
 	}else{
 		if($page=="control"){
-			if($user_info['accesslvl']>1){
+			if($user_info['groupid']>7){
 				header("location: ".$forumurl."home/");
 				exit();
 			}
