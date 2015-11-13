@@ -19,7 +19,9 @@ if($sql->num_rows > 0){
 	$heightoftask="25";
 	while($row=$sql->fetch_assoc()){
 		$userdata=GetotherMember($row['User']);
+
 		$usersets=(isset($userdata['settings']))?$userdata['settings']:array();
+
 		$username=($row['User']==0)?"Anonymous":$userdata['username'];
 		$profilelink=($row['User']==0)?"":"href='".$forumurl."/profile/".$username."'";
 		$moddata.="<tr height='".$heightoftask."px' style='border-bottom:1px dashed #555;'><td>";

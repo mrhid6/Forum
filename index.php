@@ -73,7 +73,6 @@ MemOnlyPages($context['currentPage']);
 			</div>
 			<div class="content">
 				<b>Sample text</b>
-
 				<div class="okbutton">Ok</div>
 			</div>
 

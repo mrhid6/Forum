@@ -13,8 +13,8 @@
  
  
  
- ########### Forum Variables  ############ 
- 
+ ########### Forum Variables  ############
+
  $forumurl 		= "http://".$_SERVER['HTTP_HOST'];
 
 

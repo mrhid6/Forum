@@ -203,14 +203,13 @@ function control_displaymembers(){
 	if($sql->num_rows>0){
 		while($row=$sql->fetch_assoc()){
 			$userdata=GetotherMember($row['ID']);
-			if($userdata['accesslvl']==1){$acclvltitle="Admin";}
-			if($userdata['accesslvl']==2){$acclvltitle="Moderator";}
-			if($userdata['accesslvl']==3){$acclvltitle="Member";}
+			$grouptitle=getUserGroup($userdata['groupid'])['desc'];
+
 			$res.="<tr height='25'>";
 			$res.="<td style='text-align:center;'><img style='vertical-align:text-bottom;margin-right:5px;'src='".$coreImgs."/usericons/".GetUserIcon($userdata['settings']['userIcon'],$userdata['gender'])."'></td>";
 			$res.="<td style='text-align:center;'>".$userdata['ID']."</td>";
 			$res.="<td style='text-align:left;font-weight:bold;'>".ucwords($userdata['username'])."</td>";
-			$res.="<td style='text-align:center;'><span id='icon' title='".$acclvltitle."' class='crown".$userdata['accesslvl']."'></span></td>";
+			$res.="<td style='text-align:center;'><span id='icon' title='".$grouptitle."' class='crown1'></span></td>";
 			$res.="<td style='text-align:center;'><span id='icon' class='onlinestatus".$userdata['online']."'></span></td>";
 			
 			$res.="<td style='text-align:left;'>";
