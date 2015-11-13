@@ -18,7 +18,7 @@ if (!defined('XFS'))
 		<h3>Calendar</h3>
 	</div>
 	<div class="mod_content" id="CALcontent">
-		 
+
 			
 	</div>
 </div>
