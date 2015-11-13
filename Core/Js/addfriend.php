@@ -1,7 +1,7 @@
 <?php
 session_start();
 define('XFS', 1);
-require_once("../../Settings.php");
+require_once("../../class.settings.php");
 require_once($coredir . "/Mysql.php");
 require_once($coredir . "/Sessions.php");
 require_once($coredir . "/Members.php");

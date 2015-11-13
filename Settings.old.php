@@ -35,11 +35,11 @@
  ########### Folder Structure ############
  
  $basedir 		= 	dirname(__FILE__);
- $coredir 		=	dirname(__FILE__) . "/Core";
- $srcdir  		=	dirname(__FILE__) . "/Sources";
- $themedir  	=	dirname(__FILE__) . "/Themes";
- $modsdir   	=	dirname(__FILE__) . "/Modules";
- $memsdir   	=	dirname(__FILE__) . "/Members";
+ $coredir 		=	$basedir          . "/Core";
+ $srcdir  		=	$basedir          . "/Sources";
+ $themedir  	=	$basedir          . "/Themes";
+ $modsdir   	=	$basedir          . "/Modules";
+ $memsdir   	=	$basedir          . "/Members";
  $pagedir  		=	$srcdir			  . "/Pages";
  $memsurl  		=	$forumurl 		  . "/Members";
  $coreCss		= 	$forumurl 		  . "/Core/Css";

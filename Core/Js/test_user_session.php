@@ -12,7 +12,7 @@ define('XFS', 1);
 
 session_start();
 
-require_once("../../Settings.php");
+require_once("../../class.settings.php");
 require_once($coredir . "/Mysql.php");
 
 loadDatabase();
