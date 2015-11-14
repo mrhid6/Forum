@@ -42,6 +42,20 @@ function countUserComments($user){
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."member_profilecoms WHERE to_user='".$user."'");
 	return $sql->num_rows;
 }
+function getRegisteredDate($timestamp){
+	$day=date("d",$timestamp);
+	$daynow=date("d",time());
+	$daydif=$daynow-$day;
+
+	if($daydif==0){
+		Return "Today At ".date("H:i",$timestamp);
+	}elseif($daydif==1){
+		Return "Yesterday At ".date("H:i",$timestamp);
+	}else{
+		Return date("d M Y",$timestamp);
+	}
+}
+
 function getLastActiveDisplay($timestamp){
 	$day=date("d",$timestamp);
 	$daynow=date("d",time());
@@ -173,6 +187,34 @@ function AddprofileView($memid){
 		$conn->query("UPDATE ".$db_prefix."members SET profile_views=profile_views+1 WHERE ID='".$memid."'");
 	}
 }
+
+function addProfileView_v2($profile_id, $user_id){
+	global $db_prefix, $conn;
+	echo $profile_id;
+	if(!isset($profile_id) ||$profile_id==0) {
+		echo "failed";
+		return;
+	}
+
+	if(shouldAddProfileView($profile_id, $user_id)){
+		$conn->query("INSERT INTO ".$db_prefix."profile_views SET user_id='".$user_id."', profile_id='".$profile_id."'");
+	}
+}
+
+function shouldAddProfileView($profile_id, $user_id){
+	global $db_prefix, $conn;
+
+	if(!isset($user_id) || $user_id==0) {
+		echo $user_id;
+		return true;
+	}
+
+	$sql = $conn->query("SELECT * FROM ".$db_prefix."profile_views WHERE user_id='".$user_id."' AND profile_id='".$profile_id."' AND date_viewed > NOW() - INTERVAL 10 MINUTE");
+
+	return ($sql->num_rows == 0);
+}
+
+
 function MemOnlyPages($page){
 	global $forumurl,$user_info,$context;
 	$blockedpage=array(
@@ -430,7 +472,7 @@ function registeruser($username,$password,$password2,$email,$email2,$title,$fnam
 					$usercheck=$usercheck_res->num_rows;
 
 					$emailcheck_res=$conn->query("SELECT email FROM ".$db_prefix."members WHERE email='".$email."'");
-					$emailcheck=$$emailcheck_res->num_rows;
+					$emailcheck=$emailcheck_res->num_rows;
 
 					if($usercheck==0){
 						if($emailcheck==0){
@@ -451,7 +493,8 @@ function registeruser($username,$password,$password2,$email,$email2,$title,$fnam
 								dob_year='".$dobyear."',
 								country='".$country."',
 								ipAddy='".$_SERVER["REMOTE_ADDR"]."',
-								AuthCode='".md5($authcode)."'
+								AuthCode='".md5(time().$authcode)."',
+								registered_date='".time()."'
 								");
 							$insertnum=$conn->insert_id;
 							if($sqlinsert){

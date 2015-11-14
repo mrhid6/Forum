@@ -16,30 +16,30 @@ if (!defined('XFS'))
 /*Set Profile Varibles*/
 $ismyprofile=($user_info['username']==$context['viewingProfile'] || $context['viewingProfile']=="")?true:false;
 $repcolor="";
-$rep=0;
+$reputation_score=0;
 
 if($ismyprofile==false){
 	if(checkUserExists($context['viewingProfile'])==true){
 		$tmp_uinfo=array();
 		$tmp_uinfo=GetotherMember(turnUsernameToId($context['viewingProfile']));
-		$rep=$tmp_uinfo['reputation'];
+		$reputation_score = $tmp_uinfo['reputation']/$tmp_uinfo['reputation_count'];
 	}
 }else{
-	$rep=$user_info['reputation'];
+	$reputation_score = $user_info['reputation']/$user_info['reputation_count'];
 }
 
-if($rep>0){
-	if($rep>0 && $rep<5){
-		$repcolor="yellowbox";
-	}else{
-		$repcolor="greenbox";
-	}
-}else{
-	if($rep<0 && $rep>-5){
-		$repcolor="orangebox";
-	}else{
-		$repcolor="redbox";
-	}
+if($reputation_score == 1){
+	$repcolor="greenbox";
+	$reputation_text="Excellent";
+}elseif($reputation_score < 1 && $reputation_score >= 0.5){
+	$repcolor="yellowbox";
+	$reputation_text="Neutral";
+}elseif($reputation_score < 0.5 && $reputation_score >= 0.25){
+	$repcolor="orangebox";
+	$reputation_text="Bad";
+}elseif($reputation_score < 0.25 && $reputation_score >= 0){
+	$repcolor="redbox";
+	$reputation_text="Awful";
 }
 
 
@@ -48,28 +48,10 @@ if($ismyprofile==true){
 	include($srcdir."/Profile/myprofile.php");
 }else{
 	if(checkUserExists($context['viewingProfile'])==true){
-		AddprofileView($tmp_uinfo['ID']);
+		addprofileView_v2($tmp_uinfo['ID'], $user_info['ID']);
 		include($srcdir."/Profile/viewprofile.php");
 	}else{
 		echo"<div class='msg_warn'>".errorcode(30)."</div>";
 	}
 }
 ?>
-
-<script type="text/javascript">
-<?php if($ismyprofile==true){?>
-
-var countries=new ddtabcontent("myprofiletabs")
-countries.setpersist(true)
-countries.setselectedClassTarget("link") //"link" or "linkparent"
-countries.init()
-
-<?php }else{?>
-
-var countries=new ddtabcontent("viewprofiletabs")
-countries.setpersist(true)
-countries.setselectedClassTarget("link") //"link" or "linkparent"
-countries.init()
-
-<?php }?>
-</script>

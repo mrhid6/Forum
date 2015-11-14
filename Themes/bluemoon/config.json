@@ -9,7 +9,8 @@
   "Stylesheet": [
     {
       "style": "style.css",
-      "boards": "boards.css"
+      "boards": "boards.css",
+      "profile": "profile.css"
     }
   ]
 }

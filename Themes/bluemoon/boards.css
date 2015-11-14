@@ -17,7 +17,7 @@
     position:relative;
 }
 
-.boardbox .subboard_row:nth-child(2), .subboardbox .topic_row:nth-child(2){
+.boardbox .subboard_row:nth-child(2), .subboardbox .topic_row:nth-child(even){
     background-color:rgba(0,0,0,0.2);
 }
 
