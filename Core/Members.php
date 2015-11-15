@@ -180,19 +180,10 @@ function checkUserExists($username){
 		return false;
 	}
 }
-function AddprofileView($memid){
-	global $db_prefix, $conn;
-	$memid=(int)$memid;
-	if($memid>0){
-		$conn->query("UPDATE ".$db_prefix."members SET profile_views=profile_views+1 WHERE ID='".$memid."'");
-	}
-}
 
-function addProfileView_v2($profile_id, $user_id){
+function addProfileView($profile_id, $user_id){
 	global $db_prefix, $conn;
-	echo $profile_id;
 	if(!isset($profile_id) ||$profile_id==0) {
-		echo "failed";
 		return;
 	}
 
@@ -205,7 +196,6 @@ function shouldAddProfileView($profile_id, $user_id){
 	global $db_prefix, $conn;
 
 	if(!isset($user_id) || $user_id==0) {
-		echo $user_id;
 		return true;
 	}
 
@@ -214,6 +204,12 @@ function shouldAddProfileView($profile_id, $user_id){
 	return ($sql->num_rows == 0);
 }
 
+function getProfileViews($profile_id){
+	global $conn, $db_prefix;
+	$sql=$conn->query("SELECT * FROM ".$db_prefix."profile_views WHERE profile_id='".$profile_id."'");
+
+	return $sql->num_rows;
+}
 
 function MemOnlyPages($page){
 	global $forumurl,$user_info,$context;
