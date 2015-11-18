@@ -22,14 +22,6 @@ $context = array();
 
 require_once(dirname(__FILE__) . "/Settings.php");
 
-date_default_timezone_set($defaultz);
-
-$ipAddress = $_SERVER['REMOTE_ADDR'];
-if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
-	$exploded = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-	$ipAddress = array_pop($exploded);
-}
-
 require_once($coredir . "/Mysql.php");
 require_once($coredir . "/Sessions.php");
 require_once($coredir . "/Members.php");
