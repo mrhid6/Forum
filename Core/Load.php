@@ -15,7 +15,6 @@ if (!defined('XFS'))
 loadDatabase();
 loadContext();
 resetSessions();
-loadTheme();
 loadMember();
 loadModules("sidebar");
 loadModules("misc");
@@ -41,9 +40,6 @@ function loadContext(){
 	$context["showsidebar"]=(int)(!in_array($context["currentPage"],$context["showsidebar_pages"]))?1:0;
 	
 	$context["Forum_settings"]=get_settings();
-}
-function loadTheme(){
-
 }
 function loadPage(){
 	global $context,$user_info,$theme_info,$db_prefix, $conn;

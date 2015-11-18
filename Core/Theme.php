@@ -6,6 +6,10 @@
  * Date: 06/11/2015
  * Time: 20:59
  */
+
+if (!defined('XFS'))
+    die('Hacking attempt...');
+
 class Theme
 {
 
