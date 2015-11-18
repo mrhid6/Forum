@@ -40,7 +40,7 @@ if($sql->num_rows > 0){
 		}
 		$moddata.="<td align='center'width='25px'><img src='".$coreImgs."/usericons/".$icon."'></td>";
 		$moddata.="<td><h4><a ".$profilelink.">".ucwords($username)."</h4></a> - ".$row['Shout']."</td>";
-		$moddata.="<td width='90px'><h5>(".date("d/m/Y H:i",strtotime($row['dateadded'])).")</h5></td>";
+		$moddata.="<td width='90px'><h5>(".timeago(strtotime($row['dateadded'])).")</h5></td>";
 		$moddata.="</tr>";
 		
 		$moddata.="</table>";
@@ -59,7 +59,7 @@ if($sql->num_rows > 0){
 		<div style="padding:5px;hieght:25px;">
 			<form action="" method="post" style="width:auto;display:inline;">
 				<input type="hidden" name="shoutSend" value="1">
-				<input type="text" class="blacktextbox" style="min-width:300px;max-width:1000px;width:50%;" value="Shout Out Now!" name="shoutoutbox"onfocus="this.value='';">
+				<input type="text" class="blacktextbox" placeholder="Shout Out Now!" style="min-width:300px;max-width:1000px;width:50%;" name="shoutoutbox">
 				<input id="inputbut"type="submit" name="shoutoutbut" value="Shout Out">
 			</form>
 			<?php if($_SESSION['error']['shout']){?>

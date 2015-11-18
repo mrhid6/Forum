@@ -12,6 +12,18 @@ foreach($board_info as $b){
         break;
     }
 }
+?>
+<div class="topofboard">
+    <?php if($user_info['loggedin']==1){?>
+				<a href="<?php echo$forumurl;?>/addtopic/<?php echo$context['currentBoard']."/".$context['currentSubboard'];?>"class="whitebut"/>
+                    <span id="icon" class="bluedocument"></span>
+                    Start New Sub Board!
+				</a>
+			<?php }else{?>
+				<a class="whitebut disabledbut"><span id="icon" class="bluedocument"></span>Login to start a topic.</a>
+			<?php }?>
+</div>
+<?php
 if(canUserAccessBoard($context['currentBoard'])){
     if(! empty($board_info)){
         $board=$board_info;

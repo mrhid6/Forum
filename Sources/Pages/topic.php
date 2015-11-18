@@ -68,7 +68,7 @@ if($mainboard['memonly']<=$user_info['loggedin']){
 					$userimg=GetMemDp($row['userid']);
 					$icon=GetUserIcon($userdata['settings']['userIcon'],"male");
 
-					echo "<pre>";print_r($userdata); echo "</pre>";
+					//echo "<pre>";print_r($userdata); echo "</pre>";
 					?>
 					<div class="subboard_topic">
 						<table width="100%" border="0" style="position:relative;" cellspacing="5">
@@ -80,7 +80,7 @@ if($mainboard['memonly']<=$user_info['loggedin']){
 							</tr>
 							<tr valign="top">
 								<td width="20%" align="center">
-									<div class="imagebord medimagebord">
+									<div class="imageboard medimageboard">
 										<a href="<?php echo$forumurl?>/profile/<?php echo$userdata['username']?>">
 											<img src="<?php echo$memsurl."/".$userimg;?>">
 										</a>
