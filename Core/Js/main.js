@@ -291,7 +291,14 @@ function toggleFullMessage(data){
 	}
 }
 
-
+function in_array(needle, haystack){
+	var found = 0;
+	for (var i=0, len=haystack.length;i<len;i++) {
+		if (haystack[i] == needle) return i;
+		found++;
+	}
+	return -1;
+}
 
 $( document ).ready(function() {
 
