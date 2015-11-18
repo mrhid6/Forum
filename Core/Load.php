@@ -1,6 +1,6 @@
 <?php
 /**
- * Xorbo Forum Systems 
+ * Xorbo Forum Systems
  *
  * @author Xorb http://www.xorbo.com
  * @copyright 2011 Xorbo Forums
@@ -38,7 +38,7 @@ function loadContext(){
 	$context["wysiwyg_pages"]=array("addtopic","addblog","replytopic","profile");
 	$context["showsidebar_pages"]=array("addtopic","addblog","replytopic","profile","control","board","topic");
 	$context["showsidebar"]=(int)(!in_array($context["currentPage"],$context["showsidebar_pages"]))?1:0;
-	
+
 	$context["Forum_settings"]=get_settings();
 }
 function loadPage(){
@@ -55,13 +55,13 @@ function listAllThemes(){
 	global $themedir, $db_prefix, $theme_info, $forumurl,$context;
 	$filters=array("images");
 	$res=getDirectoryTree($themedir,$filters);
-	
+
 	foreach($res as $reskey=>$resitem){
 		if(isset($resitem['config.ini'])){
 			$res[$reskey]['config']=parse_ini_file($themedir."/".$reskey."/config.ini");
 		}
 	}
-	
+
 	return $res;
 }
 function displaySelectThemes($currenttheme,$themelist){
@@ -72,22 +72,22 @@ function displaySelectThemes($currenttheme,$themelist){
 		$res.="<option ".$selected." value='".$reskey."'>".$resitem['config']['themename']."</option>";
 	}
 	$res.="</select>";
-	
+
 	return$res;
 }
 
-function getDirectoryTree( $outerDir, $filters = array() ){ 
-		$dirs = array_diff( scandir( $outerDir ), array_merge( Array( ".", ".." ), $filters ) ); 
-		$dir_array = Array(); 
-		foreach( $dirs as $d )
-			$dir_array[ $d ] = is_dir($outerDir."/".$d) ? getDirectoryTree( $outerDir."/".$d, $filters ) : $dir_array[ $d ] = $d; 
-		return $dir_array; 
-	}
+function getDirectoryTree( $outerDir, $filters = array() ){
+	$dirs = array_diff( scandir( $outerDir ), array_merge( Array( ".", ".." ), $filters ) );
+	$dir_array = Array();
+	foreach( $dirs as $d )
+		$dir_array[ $d ] = is_dir($outerDir."/".$d) ? getDirectoryTree( $outerDir."/".$d, $filters ) : $dir_array[ $d ] = $d;
+	return $dir_array;
+}
 function round_to_half($num)
 {
-  if($num >= ($half = ($ceil = ceil($num))- 0.5) + 0.25) return $ceil;
-  else if($num < $half - 0.25) return floor($num);
-  else return $half;
+	if($num >= ($half = ($ceil = ceil($num))- 0.5) + 0.25) return $ceil;
+	else if($num < $half - 0.25) return floor($num);
+	else return $half;
 }
 function checkTheFile($location){
 	if(!file_exists($location)){
@@ -100,7 +100,7 @@ function req_setting($var){
 	global $db_prefix, $conn;
 	$sql=$conn->query("SELECT value FROM ".$db_prefix."settings WHERE setting='".$var."'");
 	$res=$sql->fetch_assoc();
-	
+
 	return$res['value'];
 }
 function get_settings(){
@@ -109,15 +109,15 @@ function get_settings(){
 	while($res=$sql->fetch_assoc()){
 		$newres[$res['setting']]=$res['value'];
 	}
-	
+
 	return$newres;
 }
-function flush_forum(){ 
-    ob_end_flush();
-    ob_flush(); 
-    flush();
+function flush_forum(){
+	ob_end_flush();
+	ob_flush();
+	flush();
 	flush_headers();
-} 
+}
 function GCP($var){
 	global $user_info,$basedir;
 	$var=strtolower($var);
@@ -125,11 +125,11 @@ function GCP($var){
 		return"home";
 	}else{
 		$pagesalowed=array(
-		"home","logout","register",
-		"board","topic","addtopic","addsubboard","addboard","replytopic",
-		"profile","control",
-		"blogs","register");
-		
+			"home","logout","register",
+			"board","topic","addtopic","addsubboard","addboard","replytopic",
+			"profile","control",
+			"blogs","register");
+
 		if(in_array($var,$pagesalowed)){
 			return $var;
 		}else{
@@ -142,19 +142,19 @@ function compareForumVersions($forumversion,$exturnalversion,$returncode=false){
 	$XorbVersion=explode(".",$exturnalversion);
 	$myversion=explode(".",$forumversion);
 	$versions=array("thisforum"=>array(),"xorbforum"=>array());
-	
+
 	$versions['thisforum']['major']=	$myversion[0];
 	$versions['thisforum']['build']=	$myversion[1];
 	$versions['thisforum']['minor']=	$myversion[2];
-	
+
 	$versions['xorbforum']['major']=	$XorbVersion[0];
 	$versions['xorbforum']['build']=	$XorbVersion[1];
 	$versions['xorbforum']['minor']=	$XorbVersion[2];
-	
+
 	$minor=0;
 	$build=0;
 	$major=0;
-	
+
 	if($versions['thisforum']['minor']== $versions['xorbforum']['minor']){
 		$minor=true;
 	}
@@ -168,8 +168,8 @@ function compareForumVersions($forumversion,$exturnalversion,$returncode=false){
 }
 function decodeForumVersions($code){
 	$explode=explode("-",$code);
-	
-if($explode[0]==0){
+
+	if($explode[0]==0){
 		return"<div class='msg_warn'>".errorcode(33)."</div>";
 	}
 	if($explode[1]==0){
@@ -190,7 +190,7 @@ function update_control($task,$values){
 			$conn->query("UPDATE ".$db_prefix."settings SET value='".$values[2]."' WHERE setting='topicpagelim'");
 			$conn->query("UPDATE ".$db_prefix."settings SET value='".$values[3]."' WHERE setting='topicreplypagelim'");
 			$conn->query("UPDATE ".$db_prefix."settings SET value='".$values[4]."' WHERE setting='currentTheme'");
-		break;
+			break;
 	}
 }
 function control_displaymembers(){
@@ -207,12 +207,12 @@ function control_displaymembers(){
 			$res.="<td style='text-align:left;font-weight:bold;'>".ucwords($userdata['username'])."</td>";
 			$res.="<td style='text-align:center;'><span id='icon' title='".$grouptitle."' class='crown1'></span></td>";
 			$res.="<td style='text-align:center;'><span id='icon' class='onlinestatus".$userdata['online']."'></span></td>";
-			
+
 			$res.="<td style='text-align:left;'>";
 			$res.="<span title='Flag User' id='icon' class='flag_black'></span>";
 			$res.="<a onclick='logoutuser(".$userdata['ID'].")'><span title='Logout User' id='icon' class='keyminus'></span>";
 			$res.="</td>";
-			
+
 			$res.="</tr>";
 		}
 		return$res;
@@ -225,12 +225,12 @@ function control_displayboards(){
 		while($row=$sql->fetch_assoc()){
 			$memonly=($row['memonly']==1)?"tick":"cross";
 			$res.="<tr height='25'>";
-			
+
 			$res.="<td style='text-align:center;'>".$row['ID']."</td>";
 			$res.="<td style='text-align:left;font-weight:bold;'>".ucwords($row['name'])."</td>";
 			$res.="<td style='text-align:center;'><span id='icon' title='".$acclvltitle."' class='".$memonly."'></span></td>";
 			$res.="<td style='text-align:center;'></td>";
-			
+
 			$res.="</tr>";
 		}
 		return$res;
