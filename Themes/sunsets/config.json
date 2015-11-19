@@ -1,0 +1,17 @@
+{
+  "ThemeName": "Blue Moon",
+  "Description": "",
+  "Version": "0.0.1",
+  "Enable_Javascript": true,
+  "JavaScript": [
+    {
+      "main": "main.js"
+    }
+  ],
+  "Stylesheet": [
+    {
+      "style": "style.css",
+      "ie": "ie.css"
+    }
+  ]
+}

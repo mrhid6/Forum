@@ -18,7 +18,7 @@ $sql=$conn->query("SELECT * FROM ".$db_prefix."shouts ORDER BY ID DESC");
 if($sql->num_rows > 0){
 	$heightoftask="25";
 	while($row=$sql->fetch_assoc()){
-		$userdata=GetotherMember($row['User']);
+		$userdata=getMemberData($row['User']);
 
 		$usersets=(isset($userdata['settings']))?$userdata['settings']:array();
 

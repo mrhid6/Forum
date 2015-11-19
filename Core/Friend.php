@@ -15,7 +15,7 @@ function addfriend($friendid){
     global $db_prefix, $user_info, $conn;
 
     if($friendid!=$user_info['ID']){
-        $therearray=GetotherMember($friendid);
+        $therearray=getMemberData($friendid);
         if(!in_array($friendid,$user_info['friends']) && !in_array($user_info['ID'],$therearray['friends'])){
             $myarray=$user_info['friends'];
             $myarray[]=$friendid;
@@ -46,7 +46,7 @@ function removefriend($friendid){
     global $db_prefix, $user_info, $conn;
 
     if($friendid!=$user_info['ID']){
-        $therearray=GetotherMember($friendid);
+        $therearray=getMemberData($friendid);
         if(in_array($friendid,$user_info['friends']) && in_array($user_info['ID'],$therearray['friends'])){
             $myarray=$user_info['friends'];
 

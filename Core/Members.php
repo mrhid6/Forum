@@ -22,7 +22,7 @@ function loadMember(){
 	$user_info['sessionid']=getSessionID($_SESSION['UserSessionid']);
 	$user_info['loggedin']=(int)checkIfLogged();
 	if($user_info['loggedin']==1){
-		$user_info=array_merge($user_info,(array)GetLoggedUser());
+		$user_info=array_merge($user_info,(array)getUserData());
 		refreshLastActive();
 	}
 	return false;
@@ -47,33 +47,8 @@ function countUserComments($user){
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."member_profilecoms WHERE to_user='".$user."'");
 	return $sql->num_rows;
 }
-function getRegisteredDate($timestamp){
-	$day=date("d",$timestamp);
-	$daynow=date("d",time());
-	$daydif=$daynow-$day;
 
-	if($daydif==0){
-		Return "Today At ".date("H:i",$timestamp);
-	}elseif($daydif==1){
-		Return "Yesterday At ".date("H:i",$timestamp);
-	}else{
-		Return date("d M Y",$timestamp);
-	}
-}
 
-function getLastActiveDisplay($timestamp){
-	$day=date("d",$timestamp);
-	$daynow=date("d",time());
-	$daydif=$daynow-$day;
-
-	if($daydif==0){
-		Return "Today At ".date("H:i",$timestamp);
-	}elseif($daydif==1){
-		Return "Yesterday At ".date("H:i",$timestamp);
-	}else{
-		Return date("d M Y H:i",$timestamp);
-	}
-}
 function convertAge($iTimestamp){
 	// See http://php.net/date for what the first arguments mean. 
 	$iDiffYear  = date('Y') - date('Y', $iTimestamp);
@@ -89,9 +64,17 @@ function convertAge($iTimestamp){
 	return $iDiffYear;
 }
 function getUserFriends($friends){
-	return explode("+",$friends);
+
+	$res=array();
+
+	foreach(explode("+",$friends) as $friend){
+		if($friend != '')
+			$res[]=$friend;
+	}
+
+	return $res;
 }
-function getUsersettings($setid){
+function getUserSettings($setid){
 	global $db_prefix, $conn;
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."member_settings WHERE ID='".$setid."'");
 	if($sql->num_rows==1){
@@ -135,47 +118,7 @@ function PostProfileSettings($usericon,$dage,$dbday,$dgender,$dloc,$demail,$sig)
 	$conn->query("UPDATE ".$db_prefix."members SET setting_id='".$newsetid."', signature='".$sig."' WHERE ID='".$user_info['ID']."'");
 
 }
-function GetUserIcon($code,$gender){
-	$gender1=strtolower($gender);
-	$gender2=($gender1!="male")?"-".strtolower($gender):"";
-	if($code!=''){
-		switch($code){
-			case"1":
-				$res=$gender1."/user".$gender2.".png";
-				break;
-			case"2":
-				$res=$gender1."/user-black".$gender2.".png";
-				break;
-			case"3":
-				$res=$gender1."/user-gray".$gender2.".png";
-				break;
-			case"4":
-				$res=$gender1."/user-green".$gender2.".png";
-				break;
-			case"5":
-				$res=$gender1."/user-red".$gender2.".png";
-				break;
-			case"6":
-				$res=$gender1."/user-white".$gender2.".png";
-				break;
-			case"7":
-				$res=$gender1."/user-yellow".$gender2.".png";
-				break;
-			case"8":
-				$res=$gender1."/user-medical".$gender2.".png";
-				break;
-			case"9":
-				$res=$gender1."/user-thief".$gender2.".png";
-				break;
-			default:
-				$res="/user-silhouette.png";
-				break;
-		}
-		return$res;
-	}else{
-		return"user-silhouette.png";
-	}
-}
+
 function checkUserExists($username){
 	global $db_prefix, $conn;
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."members WHERE username='".$username."'");
@@ -216,25 +159,6 @@ function getProfileViews($profile_id){
 	return $sql->num_rows;
 }
 
-function MemOnlyPages($page){
-	global $forumurl,$user_info,$context;
-	$blockedpage=array(
-		"profile","control",
-		"addtopic","addblog","replytopic","addsubboard","addboard"
-	);
-	if(in_array($page,$blockedpage) && $user_info['loggedin']==0 && $context['viewingProfile']==""){
-		header("location: ".$forumurl."/home/");
-		exit();
-	}else{
-		if($page=="control"){
-			if($user_info['groupid']>7){
-				header("location: ".$forumurl."home/");
-				exit();
-			}
-		}
-	}
-}
-
 function checkIfLogged(){
 	global $user_info;
 	if(isset($_SESSION['loggedUser'])){
@@ -247,7 +171,7 @@ function checkIfLogged(){
 		return false;
 	}
 }
-function GetLoggedUser(){
+function getUserData(){
 	global $db_prefix, $conn;
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."members");
 	if($sql->num_rows > 0){
@@ -278,7 +202,7 @@ function DisplayFriends($data){
 		for($i=0; $i<$count; $i++){
 			if(isset($fris[$i]) && $fris[$i]!=''){
 				$userimage=GetMemDp($fris[$i],"small");
-				$frienddata=getOtherMember($fris[$i]);
+				$frienddata=getMemberData($fris[$i]);
 				$friends.="<td width='16%'><div class='imagebord'><a href='".$forumurl."/profile/".$frienddata['username']."'><img src='".$forumurl."/Members/".$userimage."' title='".ucwords($frienddata['username'])."'></a></div></td>";
 			}else{
 				$friends.="<td width='16%'></td>";
@@ -287,7 +211,7 @@ function DisplayFriends($data){
 		return $friends;
 	}
 }
-function GetotherMember($id,$data=""){
+function getMemberData($id, $data=""){
 	global $db_prefix, $conn;
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."members WHERE ID='".$id."'");
 	if($sql->num_rows == 1){
@@ -344,7 +268,7 @@ function statusupdate($userid,$status){
 	return$res;
 }
 function loginfun($username,$password){
-	global $db_prefix, $user_info, $conn, $ipAddress;
+	global $db_prefix, $conn, $ipAddress;
 	$username=UnInjection($username);
 	$password=UnInjection($password);
 	if($username!='' && $password!=''){
@@ -513,7 +437,7 @@ Password: ".$password;
 	return($res);
 }
 function GetMemDp($memid,$size="org"){
-	$userdata=GetotherMember($memid);
+	$userdata=getMemberData($memid);
 	if($userdata['profileimage']=="default.png"){
 		$userimg="default.png";
 	}else{

@@ -22,7 +22,7 @@ $userdata=array();
 
 if($ismyprofile==false){
 	if(checkUserExists($context['viewingProfile'])==true){
-		$userdata = GetotherMember(turnUsernameToId($context['viewingProfile']));
+		$userdata = getMemberData(turnUsernameToId($context['viewingProfile']));
 		addprofileView($userdata['ID'], $user_info['ID']);
 	}else{
 		echo"<div class='msg_warn'>".errorcode(30)."</div>";
@@ -51,17 +51,6 @@ if($reputation_score == 1){
 	$repcolor="redbox";
 	$reputation_text="Awful";
 }
-
-
-/*Include the right file for the profile page
-if($ismyprofile==true){
-	include($srcdir."/Profile/myprofile.php");
-}else{
-	if(checkUserExists($context['viewingProfile'])==true){
-
-		include($srcdir."/Profile/viewprofile.php");
-	}
-}*/
 ?>
 
 <div id="collapsebox" class="profilebox">
@@ -101,10 +90,10 @@ if($ismyprofile==true){
 						<h4>Profile Views: <?php echo getProfileViews($userdata['ID']);?></h4>
 					</div>
 					<div class="inforow">
-						<h4>Active Since: <?php echo getRegisteredDate($userdata['registered_date']);?></h4>
+						<h4>Active Since: <?php echo timeago_v1($userdata['registered_date']);?></h4>
 					</div>
 					<div class="inforow">
-						<h4>Last Active: <?php echo getLastActiveDisplay($userdata['last_active']);?></h4>
+						<h4>Last Active: <?php echo timeago($userdata['last_active']);?></h4>
 					</div>
 					<div class="inforow">
 						<h4>Gender: <?php

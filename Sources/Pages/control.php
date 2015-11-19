@@ -1,7 +1,7 @@
 <?php
-$Newestversion= file_get_contents("http://xorbo.com/forumapi/forumversion.ini",null,null,7,5);
+//$Newestversion= file_get_contents("http://xorbo.com/forumapi/forumversion.ini",null,null,7,5);
 
-$compare=decodeForumVersions(compareForumVersions($context["forumVersion"],$Newestversion,true));
+//compare=decodeForumVersions(compareForumVersions($context["forumVersion"],$Newestversion,true));
 $themelist=listAllThemes();
 ?>
 <div class="control">
@@ -9,7 +9,7 @@ $themelist=listAllThemes();
 		<div class="profile">
 			<table width="100%" height="120">
 				<tr>
-					<td align="center"width="80"rowspan="2"><div class="imagebord"><img src="<?php echo $memsurl."/".GetMemDp($user_info['ID'],"small");?>"></div></td>
+					<td align="center"width="80"rowspan="2"><div class="imageboard"><img src="<?php echo $memsurl."/".GetMemDp($user_info['ID'],"small");?>"></div></td>
 					<td valign="bottom"><h5>Logged In As</h5></td>
 				</tr>
 				<tr>

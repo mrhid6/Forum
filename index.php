@@ -25,14 +25,15 @@ require_once(dirname(__FILE__) . "/Settings.php");
 require_once($coredir . "/Mysql.php");
 require_once($coredir . "/Sessions.php");
 require_once($coredir . "/Members.php");
+require_once($coredir . "/Page.php");
 require_once($coredir . "/Modules.php");
 require_once($coredir . "/Board.php");
 require_once($coredir . "/Theme.php");
 require_once($coredir . "/Load.php");
 require_once($coredir . "/Posts.php");
-require_once($srcdir . "/ui.php");
+require_once($coredir . "/UI.php");
 
-MemOnlyPages($context['currentPage']);
+checkAccessToPage();
 ?>
 <!DOCTYPE html>
 
@@ -72,6 +73,7 @@ MemOnlyPages($context['currentPage']);
 		<pre><?php print_r($context);?></pre>
 		<pre><?php print_r($user_info);?></pre>
 		<pre><?php print_r($theme->buildArray());?></pre>
+		<pre><?php print_r($page_info);?></pre>
 	</body>
 </html>
 <?php

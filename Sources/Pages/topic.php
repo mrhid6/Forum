@@ -64,7 +64,7 @@ if($mainboard['memonly']<=$user_info['loggedin']){
 			$sql2=$conn->query("SELECT * FROM ".$db_prefix."board_topicreply WHERE topicid='".$row['ID']."'LIMIT " . (  $startlim) .", " . $topicsperpage);
 			if($sql2->num_rows > 0){
 				while($row=$sql2->fetch_assoc()){
-					$userdata=GetotherMember($row['userid']);
+					$userdata=getMemberData($row['userid']);
 					$userimg=GetMemDp($row['userid']);
 					$icon=GetUserIcon($userdata['settings']['userIcon'],"male");
 

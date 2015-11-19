@@ -59,7 +59,7 @@ if (!defined('XFS'))
 				</a>
 			</div>
 			<ul>
-				<li>Last Active : <?php echo getLastActiveDisplay($user_info["last_active"]);?></li>
+				<li>Last Active : <?php echo timeago($user_info["last_active"]);?></li>
 				<li>Friends : <?php echo count($user_info['friends']);?></li>
 				<li>Total Topics : <?php echo countTopics("",$user_info['ID']);?></li>
 				<li>Total Comments : <?php echo countUserComments($user_info['ID']);?></li>

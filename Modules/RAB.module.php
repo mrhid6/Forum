@@ -31,7 +31,7 @@ if($sql->num_rows > 0){
 		
 		$moddata.="<tr>";
 		$moddata.="<td width='98%'><h6>(".date("d/m/Y",strtotime($row['Dateadded'])).")</h6></td>";
-		$moddata.="<td width='2%'>".ucwords(GetotherMember($row['Userid'],"username"))."</td>";
+		$moddata.="<td width='2%'>".ucwords(getMemberData($row['Userid'],"username"))."</td>";
 		$moddata.="</tr>";
 		
 		$moddata.="</table>";

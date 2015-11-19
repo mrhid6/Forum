@@ -50,16 +50,16 @@ function starrating($score,$small=false){
 }
 
 function GetNavBar(){
-	global $forumurl, $user_info,$db_prefix,$memsurl, $conn;
+	global $forumurl, $user_info,$db_prefix, $conn;
 	if($user_info['loggedin']==1){
-		$where="WHERE access_level>='".$user_info['accesslvl']."'";
+		$where="WHERE inNavBar='1' AND accesslvl<='".$user_info['group']['ID']."'";
 	}else{
-		$where="WHERE Loggedin='0'";
+		$where="WHERE inNavBar='1' AND accesslvl='0'";
 	}
-	$sql=$conn->query("SELECT * FROM ".$db_prefix."navbar $where");
+	$sql=$conn->query("SELECT * FROM ".$db_prefix."pages $where");
 	$ret="";
 	while($res=$sql->fetch_assoc()){
-		$ret.="<li><a href='".$forumurl.$res['Link']."'>".$res['Linkname']."</a></li>\n";
+		$ret.="<li><a href='".$forumurl.$res['link']."'>".$res['displayname']."</a></li>\n";
 	}
 	return$ret;
 }
@@ -142,6 +142,20 @@ function timeago($time){
 	return "$difference $periods[$j] ago ";
 }
 
+function timeago_v1($timestamp){
+	$day=date("d",$timestamp);
+	$daynow=date("d",time());
+	$daydif=$daynow-$day;
+
+	if($daydif==0){
+		Return "Today At ".date("H:i",$timestamp);
+	}elseif($daydif==1){
+		Return "Yesterday At ".date("H:i",$timestamp);
+	}else{
+		Return date("d M Y",$timestamp);
+	}
+}
+
 function GetSideBar(){
 	global $context, $modsdir,$forumurl,$db_prefix,$user_info,$memsurl,$coreImgs,$conn;
 	foreach($context['sidebar_mods'] as $modkey=>$mod){
@@ -165,11 +179,11 @@ function DisplayCountrylist(){
 }
 
 function GetMoStrip(){
-	global $context,$forumurl,$theme,$user_info,$db_prefix;
+	global $context,$forumurl,$theme,$user_info,$db_prefix,$page_info;
 
 	$mostrip="<li><a href='$forumurl/home/'><img src='".$forumurl."/Themes/".$theme->getName()."/images/home.png' alt='Home'/></a></li>";
 
-	switch($context['currentPage']){
+	switch($page_info['currentPage']){
 		case"error":
 			$mostrip.="<li><a>Error: Page Could Not Be Displayed</a></li>";
 			break;
@@ -226,7 +240,7 @@ function GetMoStrip(){
 
 			break;
 		case"control":
-			$mostrip.="<li><a>Viewing Control Panel</a></li>";
+			$mostrip.="<li><a>Control Panel</a></li>";
 			break;
 		case"board":
 			$mostrip.="<li><a href='$forumurl/board/'>All Boards</a></li>";
@@ -284,5 +298,47 @@ function GetMoStrip(){
 	}
 
 	return$mostrip;
+}
+
+function GetUserIcon($code,$gender){
+	$gender1=strtolower($gender);
+	$gender2=($gender1!="male")?"-".strtolower($gender):"";
+	if($code!=''){
+		switch($code){
+			case"1":
+				$res=$gender1."/user".$gender2.".png";
+				break;
+			case"2":
+				$res=$gender1."/user-black".$gender2.".png";
+				break;
+			case"3":
+				$res=$gender1."/user-gray".$gender2.".png";
+				break;
+			case"4":
+				$res=$gender1."/user-green".$gender2.".png";
+				break;
+			case"5":
+				$res=$gender1."/user-red".$gender2.".png";
+				break;
+			case"6":
+				$res=$gender1."/user-white".$gender2.".png";
+				break;
+			case"7":
+				$res=$gender1."/user-yellow".$gender2.".png";
+				break;
+			case"8":
+				$res=$gender1."/user-medical".$gender2.".png";
+				break;
+			case"9":
+				$res=$gender1."/user-thief".$gender2.".png";
+				break;
+			default:
+				$res="/user-silhouette.png";
+				break;
+		}
+		return$res;
+	}else{
+		return"user-silhouette.png";
+	}
 }
 ?>

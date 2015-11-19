@@ -1,7 +1,7 @@
 <?php
 if(count($user_info['friends'])>0){
 	foreach($user_info['friends'] as $fri){
-		$fridata=GetotherMember($fri);
+		$fridata=getMemberData($fri);
 		$usericon=GetUserIcon($fridata['settings']['userIcon'],$fridata['gender']);
 		$data.="<tr>";
 			$data.="<td align='center'><img src='".$coreImgs."/usericons/".$usericon."'></td>";

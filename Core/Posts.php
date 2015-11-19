@@ -28,7 +28,7 @@ if($_POST['addnewtopicmask']==1){
 if($_POST['control_settings']==1){
 	$values=array($_POST['busytimeout'],$_POST['offlinetimout'],$_POST['TopPerBoard'],$_POST['RepPerTopic'],$_POST['themeselect']);
 	update_control("settings",$values);
-	loadTheme();
+	header("location: .");
 }
 if($_POST['addnewsubboardmask']==1){
 	$post=addSubboard($_POST['subtitle'],$_POST['subdesc'],$context['currentBoard']);

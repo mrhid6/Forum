@@ -230,7 +230,8 @@ if (!defined('XFS'))
 
 			$ret="<img src=\"".$memsurl."/".GetMemDp($res['userid'],"small")."\">";
 			$ret.="<a href='".$forumurl."/topic/".$topic['ID']."'>".shortenString($topic['name'])."</a><br/>";
-			$ret.="By <a href='".$forumurl."/profile/".GetotherMember($res['userid'],"username")."'>".ucwords(GetotherMember($res['userid'],"username"))."</a>, ".timeago($time);
+			$username=getMemberData($res['userid'],"username");
+			$ret.="By <a href='".$forumurl."/profile/".$username."'>".ucwords($username)."</a>, ".timeago($time);
 		}
 		return$ret;
 	}

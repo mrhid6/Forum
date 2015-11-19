@@ -42,8 +42,8 @@ if($context['currentBlog']==""){
 								</a>
 							</td>
 							<td>
-								<a href="<?php echo$forumurl;?>/profile/<?php echo GetotherMember($row['Userid'],"username");?>">
-									<?php echo ucwords(GetotherMember($row['Userid'],"username"));?>
+								<a href="<?php echo$forumurl;?>/profile/<?php echo getMemberData($row['Userid'],"username");?>">
+									<?php echo ucwords(getMemberData($row['Userid'],"username"));?>
 								</a>
 							</td>
 							<td>

@@ -758,7 +758,6 @@ textarea{
 /*----------------Member Login End---------------*/
 
 #alertbox{
-    display: none !important;
     border: none;
     top:50%;
     left:50%;

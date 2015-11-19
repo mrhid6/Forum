@@ -13,6 +13,7 @@ if (!defined('XFS'))
 	die('Hacking attempt...');
 
 loadDatabase();
+loadPageInfo();
 loadContext();
 resetSessions();
 loadMember();
@@ -26,9 +27,8 @@ $theme = new Theme();
 
 ############# Make Functions ##############
 function loadContext(){
-	global $context,$forumVersion;
+	global $context,$forumVersion, $page_info;
 	$context["forumVersion"] = $forumVersion;
-	$context["currentPage"] = GCP($_GET['page']);
 	$context["currentBoard"] = (int)Uninjection($_GET['boardid']);
 	$context["currentSubboard"] = (int)Uninjection($_GET['subboardid']);
 	$context["currentTopic"] = (int)Uninjection($_GET['topicid']);
@@ -37,16 +37,16 @@ function loadContext(){
 	$context['viewingProfile']=Uninjection($_GET['viewprofile']);
 	$context["wysiwyg_pages"]=array("addtopic","addblog","replytopic","profile");
 	$context["showsidebar_pages"]=array("addtopic","addblog","replytopic","profile","control","board","topic");
-	$context["showsidebar"]=(int)(!in_array($context["currentPage"],$context["showsidebar_pages"]))?1:0;
+	$context["showsidebar"]=(int)(!in_array($page_info['currentPage'],$context["showsidebar_pages"]))?1:0;
 
 	$context["Forum_settings"]=get_settings();
 }
 function loadPage(){
 	global $context,$user_info,$theme_info,$db_prefix, $conn;
 	global $srcdir,$pagedir,$coreImgs,$forumurl,$memsdir,$memsurl;
-	global $TopicsPerPage,$TopicReplyPerPage;
-	if(file_exists($pagedir."/".$context["currentPage"].".php")){
-		include_once($pagedir."/".$context["currentPage"].".php");
+	global $TopicsPerPage,$TopicReplyPerPage, $page_info;
+	if(file_exists($pagedir."/".$page_info['currentPage'].".php")){
+		include_once($pagedir."/".$page_info['currentPage'].".php");
 	}else{
 		echo "<div class='msg_warn'>".errorcode(11)."</div>";
 	}
@@ -118,25 +118,8 @@ function flush_forum(){
 	flush();
 	flush_headers();
 }
-function GCP($var){
-	global $user_info,$basedir;
-	$var=strtolower($var);
-	if($var==''){
-		return"home";
-	}else{
-		$pagesalowed=array(
-			"home","logout","register",
-			"board","topic","addtopic","addsubboard","addboard","replytopic",
-			"profile","control",
-			"blogs","register");
 
-		if(in_array($var,$pagesalowed)){
-			return $var;
-		}else{
-			return "error";
-		}
-	}
-}
+
 function compareForumVersions($forumversion,$exturnalversion,$returncode=false){
 
 	$XorbVersion=explode(".",$exturnalversion);
@@ -198,7 +181,7 @@ function control_displaymembers(){
 	$sql=$conn->query("SELECT * FROM ".$db_prefix."members");
 	if($sql->num_rows>0){
 		while($row=$sql->fetch_assoc()){
-			$userdata=GetotherMember($row['ID']);
+			$userdata=getMemberData($row['ID']);
 			$grouptitle=getUserGroup($userdata['groupid'])['desc'];
 
 			$res.="<tr height='25'>";

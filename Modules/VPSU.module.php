@@ -16,7 +16,7 @@ $my_user_info = $user_info;
 
 if($context['viewingProfile']){
 	$userid=turnUsernameToId($context['viewingProfile']);
-	$user_info=GetotherMember($userid);
+	$user_info=getMemberData($userid);
 }
 $moddata="";
 
