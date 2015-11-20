@@ -46,6 +46,7 @@ checkAccessToPage();
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script type="text/javascript" src="<?php echo$coreJs;?>/tabsmin.js"></script>
 		<script type="text/javascript" src="<?php echo$coreJs;?>/main.js"></script>
+		<script type="text/javascript" src="<?php echo$coreJs;?>/Forms.js"></script>
 		<?php echo $theme->generateHeadJS();?>
 
 		<meta http-equiv="cache-control" content="max-age=0" />

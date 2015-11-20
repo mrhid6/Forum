@@ -26,25 +26,6 @@ function loadPageInfo(){
     $page_info['currentPage'] = validatePage($_GET['page']);
 }
 
-function MemOnlyPages($page){
-    global $forumurl,$user_info,$context;
-    $blockedpage=array(
-        "profile","control",
-        "addtopic","addblog","replytopic","addsubboard","addboard"
-    );
-    if(in_array($page,$blockedpage) && $user_info['loggedin']==0 && $context['viewingProfile']==""){
-        header("location: ".$forumurl."/home/");
-        exit();
-    }else{
-        if($page=="control"){
-            if($user_info['group']['ID'] >= 7){
-                header("location: ".$forumurl."home/");
-                exit();
-            }
-        }
-    }
-}
-
 function getHomePage(){
     global $forumurl, $page_info;
 

@@ -4,10 +4,11 @@
 
 
 $( document ).ready(function() {
-    var formsBaseURL="Core/Forms/";
+    var formsBaseURL="/Core/Forms/";
 
     var forms ={
-      test:"form.php"
+      test:"form.php",
+      addsubboard:"addsubboard.php"
     };
 
     var formOpen = false;
@@ -15,20 +16,22 @@ $( document ).ready(function() {
 
     $("a[data-form-link]").click(function(){
         var formToLoad=$(this).attr('data-form-link');
+        var data = $(this).attr('data-form-data');
+
         if(in_array(formToLoad, forms)) {
             if(formOpen){
                 destroyFormDiv();
                 formOpen = false;
             }else {
                 formOpen = true;
-                createFormDiv(formsBaseURL + forms[formToLoad]);
+                createFormDiv(formsBaseURL + forms[formToLoad], data);
             }
         }
     });
 
-    function createFormDiv(formURL){
+    function createFormDiv(formURL, data){
         div = $('<div />', {'class':'jqueryForm'});
-        div.load(formURL);
+        div.load(formURL+"?form-data="+data);
         openForm = div;
         $("body").append(openForm);
     }

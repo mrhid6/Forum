@@ -45,6 +45,7 @@ if (!defined('XFS'))
 			if($sql->num_rows == 0){
 				$sql=$conn->query("INSERT INTO ".$db_prefix."board_sub SET
 				name='".$title."',
+				description='".$desc."',
 				mainboard='".$board."'");
 				if($sql){
 					$res["result"]="suc";

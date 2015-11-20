@@ -469,3 +469,9 @@ span#icon{
 	border:1px solid #000;
 	display:none;
 }
+
+.jqueryForm{
+	position:fixed;
+	left:50%;
+	top:50%;
+}

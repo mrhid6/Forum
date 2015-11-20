@@ -15,7 +15,7 @@ foreach($board_info as $b){
 ?>
 <div class="topofboard">
     <?php if($user_info['loggedin']==1){?>
-				<a href="<?php echo$forumurl;?>/addtopic/<?php echo$context['currentBoard']."/".$context['currentSubboard'];?>"class="whitebut"/>
+				<a data-form-link="addsubboard" data-form-data="<?php echo $context['currentBoard']?>" class="whitebut"/>
                     <span id="icon" class="bluedocument"></span>
                     Start New Sub Board!
 				</a>
