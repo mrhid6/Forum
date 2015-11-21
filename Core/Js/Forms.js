@@ -31,13 +31,23 @@ $( document ).ready(function() {
 
     function createFormDiv(formURL, data){
         div = $('<div />', {'class':'jqueryForm'});
-        div.load(formURL+"?form-data="+data);
-        openForm = div;
-        $("body").append(openForm);
+        div.load(formURL+"?form-data="+data, function(){
+
+            openForm = div;
+            $("body").append(openForm);
+            adjustPopUp();
+        });
     }
 
     function destroyFormDiv(){
         openForm.remove();
+    }
+
+    function adjustPopUp(){
+        var div = $(".jqueryForm");
+
+        div.css("margin-left", -(div.width() / 2));
+        div.css("margin-top", -(div.height() / 2));
     }
 
 });

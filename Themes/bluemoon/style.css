@@ -249,7 +249,7 @@ textarea{
 }
 /*Collapse Box*/
 #collapsebox{
-    margin:5px 0px;
+    margin:10px 0px;
 }
 #collapsebox .titlebox{
     background:rgb(20,20,20)!important;
@@ -308,7 +308,15 @@ textarea{
     width:100%;
     height:60px;
     clear:both;
+    position: relative;
+}
 
+.footer div{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-92.5px;
+    margin-top:-7px;
 }
 /*----------------Main Layout End----------------*/
 /*--------------------Mostript-------------------*/

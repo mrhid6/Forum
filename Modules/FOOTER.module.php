@@ -11,5 +11,7 @@
 ?>
 
 <div class="footer">
-    <h4>Powered by Xorbo &copy;2015</h4>
+    <div>
+        <h4>Powered by Xorbo 2014 - 2015 &copy;</h4>
+    </div>
 </div>

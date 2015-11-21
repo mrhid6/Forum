@@ -35,7 +35,7 @@ if (!defined('XFS'))
 		}
 		return $res;
 	}
-	function addSubboard($title,$desc="",$board){
+	function addSubboard($title,$desc,$board){
 		global $db_prefix, $conn;
 		$title=UnInjection($title,"basic");
 		$desc=UnInjection($desc,"basic");
