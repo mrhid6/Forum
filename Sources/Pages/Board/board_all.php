@@ -39,7 +39,7 @@ if(! empty($board_info)){
                                     <?php echo number_format(CRFSB($subboard['ID']));?> Replies
                                 </div>
                                 <div class="rowlastedit">
-                                    <?php echo GetLastReplyInfo($subboard['ID']);?>
+                                    <?php echo GetLastReplyInfo_SubBoard($subboard['ID']);?>
                                 </div>
                             </div>
                         <?php }}else {

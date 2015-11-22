@@ -51,11 +51,11 @@ if($mainboard['memonly']<=$user_info['loggedin']){
 				<span class="inline-rating">
 					<ul class="star-rating small-star">
 						<li class="current-rating" style="width:<?php echo$currentpercent."%";?>;">Currently 1.5/5 Stars.</li>
-						<li><a onclick="javascript:starRating(<?php echo$row['ID']?>,'topic',1);"title="1 star out of 5" class="one-star">1</a></li>
-						<li><a onclick="javascript:starRating(<?php echo$row['ID']?>,'topic',2);"title="2 stars out of 5" class="two-stars">2</a></li>
-						<li><a onclick="javascript:starRating(<?php echo$row['ID']?>,'topic',3);"title="3 stars out of 5" class="three-stars">3</a></li>
-						<li><a onclick="javascript:starRating(<?php echo$row['ID']?>,'topic',4);"title="4 stars out of 5" class="four-stars">4</a></li>
-						<li><a onclick="javascript:starRating(<?php echo$row['ID']?>,'topic',5);"title="5 stars out of 5" class="five-stars">5</a></li>
+						<li><a data-star-data="topic,<?php echo$row['ID']?>,1" title="1 star out of 5" class="one-star">1</a></li>
+						<li><a data-star-data="topic,<?php echo$row['ID']?>,2"title="2 stars out of 5" class="two-stars">2</a></li>
+						<li><a data-star-data="topic,<?php echo$row['ID']?>,3"title="3 stars out of 5" class="three-stars">3</a></li>
+						<li><a data-star-data="topic,<?php echo$row['ID']?>,4"title="4 stars out of 5" class="four-stars">4</a></li>
+						<li><a data-star-data="topic,<?php echo$row['ID']?>,5"title="5 stars out of 5" class="five-stars">5</a></li>
 					</ul>
 				</span>
 		</div>
