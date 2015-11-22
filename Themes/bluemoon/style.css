@@ -293,7 +293,7 @@ textarea{
 }
 #collapsebox .content .subboard,#collapsebox .content .subboard_topic{
     padding:0px 5px;
-    border-bottom:1px dashed #0B0B1F;
+    border-bottom:1px dashed #1b1b1b;
     height:80px;
     display:block;
 }
