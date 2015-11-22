@@ -77,7 +77,7 @@ function starRating(Id,task,value){
     var url = scriptSource+"starRating.php";
 	var d=new Date();
     var vars = "task="+task+"&ID="+Id+"&value="+value+"&time="+d.getTime();
-	alert(vars);
+	alert(url);
     hr.open("POST", url, true);
     // Set content type header information for sending url encoded variables in the request
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -325,6 +325,18 @@ $( document ).ready(function() {
 
 				});
 	}, 10000);
+
+	$(".star-rating a").click(function(){
+
+		var _self = $(this);
+
+		var data = _self.attr("data-star-data");
+		$.post("/Core/Js/starRating.php",{starData: data},function(d, status){
+			var ul = _self.parent().parent();
+
+			ul.find(".current-rating").css("width", d+"%");
+		})
+	});
 
 	console.log( "ready!" );
 });
