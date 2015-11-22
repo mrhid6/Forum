@@ -302,6 +302,10 @@ textarea{
     height:auto;
 }
 
+#collapsebox .content .subboard_topic:last-of-type{
+    border-bottom:none !important;
+}
+
 .footer{
     margin-top:20px;
     position: relative;
