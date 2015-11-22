@@ -85,8 +85,9 @@ if($_POST['profilesettings']!=''){
 	$post=PostProfileSettings($_POST['usericon'],$_POST['displayage'],$_POST['displaydbay'],$_POST['displaygender'],$_POST['displayloc'],$_POST['displayemail'],$_POST['wysiwyg_text']);
 	loadMember();
 }
-if($context['currentPage']=="logout"){
+if($page_info['currentPage']=="logout"){
 	deleteOnlineuser($user_info['ID']);
+	logoutUser();
 	session_destroy();
 	$user_info=null;
 }

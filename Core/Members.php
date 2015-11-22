@@ -34,10 +34,17 @@ function getSessionID($sessionid){
 		$row=$sql->fetch_assoc();
 		return$row['sessionid'];
 	}elseif($sessionid!=''){
-		$_SESSION['forcelogout']['reason']="Due To Inactivity";
-		unset($_SESSION['UserSessionid']);
+		logoutUser("Due To Inactivity");
 	}
 }
+
+function logoutUser($reason="normal"){
+	if($reason != "normal"){
+		$_SESSION['forcelogout']['reason']=$reason;
+	}
+	unset($_SESSION['UserSessionid']);
+}
+
 function refreshLastActive(){
 	global $db_prefix, $user_info, $conn;
 	$conn->query("UPDATE ".$db_prefix."members SET last_active=".time()." WHERE ID='".$user_info['ID']."'");

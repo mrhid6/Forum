@@ -18,11 +18,11 @@ function resetSessions(){
 }
 function updateSession(){
 	global $db_prefix,$user_info, $conn;
-	$sql=$conn->query("UPDATE ".$db_prefix."member_online SET timeonline='".date("Y-m-d H:i:s",time())."', status='1' WHERE userid='".$user_info['ID']."'");
+	$conn->query("UPDATE ".$db_prefix."member_online SET timeonline='".date("Y-m-d H:i:s",time())."', status='1' WHERE userid='".$user_info['ID']."'");
 }
 function deleteOnlineuser($userid){
 	global $db_prefix,$user_info, $conn;
-	$sql=$conn->query("DELETE FROM ".$db_prefix."member_online WHERE userid='".$userid."'");
+	$conn->query("DELETE FROM ".$db_prefix."member_online WHERE userid='".$userid."'");
 }
 function createSessionID() {
 	$password=genpassword(4);
