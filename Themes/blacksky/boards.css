@@ -12,17 +12,13 @@
 
 .boardbox .subboard_row, .subboardbox .topic_row{
     height:60px;
-    border-bottom:1px solid #222222;
+    border-bottom:1px solid #000;
     vertical-align:middle;
     position:relative;
 }
 
 .boardbox .subboard_row:nth-child(even), .subboardbox .topic_row:nth-child(even){
-    background-color:rgba(0,0,0,0.05);
-}
-
-.boardbox .subboard_row:last-of-type, .subboardbox .topic_row:last-of-type{
-    border-bottom:none !important;
+    background-color:rgba(0,0,0,0.2);
 }
 
 .boardbox .subboard_row .rowicon, .subboardbox .topic_row .rowicon{

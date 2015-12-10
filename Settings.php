@@ -20,16 +20,16 @@ $forumurl 		= "http://".$_SERVER['HTTP_HOST'];
 
 $forumVersion 	= "2.0.0";
 
-$adminemail 	= "dominic.richardson1@hotmail.co.uk";
+$adminemail 	= "admin@forum.hostxtra.co.uk";
 
 $defaultz		= "Europe/Dublin";
 
 ########## Database Variables  ##########
 $db_server		= "localhost";
-$db_user	 	= "forum";
-$db_passwd		= "forum123";
+$db_user	 	= "admin_forum";
+$db_passwd		= "iTNLK7QTX6";
 
-$db_name 	  	= "forum";
+$db_name 	  	= "admin_forum";
 $db_prefix  	= "XFS_";
 
 ########### Folder Structure ############

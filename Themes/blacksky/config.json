@@ -1,0 +1,16 @@
+{
+  "ThemeName": "Black Sky",
+  "Description": "",
+  "Version": "0.0.1",
+  "Enable_Javascript": true,
+  "JavaScript": [
+    {}
+  ],
+  "Stylesheet": [
+    {
+      "style": "style.css",
+      "boards": "boards.css",
+      "profile": "profile.css"
+    }
+  ]
+}
